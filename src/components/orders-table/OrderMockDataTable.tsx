@@ -41,7 +41,7 @@ export function DataTable<TData, TValue>({
                 return (
                   <TableHead
                     key={header.id}
-                    className="h-16 py-2 text-center align-middle"
+                    className="h-16 py-2 text-left"
                   >
                     {header.isPlaceholder
                       ? null
@@ -64,7 +64,7 @@ export function DataTable<TData, TValue>({
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="px-4 py-4 align-middle">
+                  <TableCell key={cell.id} className="px-4 py-4 text-left">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -72,7 +72,7 @@ export function DataTable<TData, TValue>({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
+              <TableCell colSpan={columns.length} className="h-24 text-left">
                 No results.
               </TableCell>
             </TableRow>
@@ -81,38 +81,39 @@ export function DataTable<TData, TValue>({
       </Table>
       <div className="mt-auto flex items-center justify-between px-4 py-1">
         <div className="flex items-center">
-          <span className="flex items-center text-xs text-gray-500">
-            <div>Page</div>
+          <span className="flex items-center space-x-1 text-xs text-gray-500">
+            <div>Showing </div>
             <strong>
-              {table.getState().pagination.pageIndex + 1} of{" "}
-              {table.getPageCount()}
+              {table.getState().pagination.pageIndex + 1} to {" "}
+              {table.getPageCount()} of {table.getPageCount()} entries
             </strong>
           </span>
         </div>
-        <div className="ml-4 flex items-center">
+        <div className="ml-4 flex space-x-5 items-center">
           <button
-            className="rounded p-1"
+            className="rounded text-sm text-[#B0A6A6] p-1"
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
             {"<<"}
           </button>
           <button
-            className="rounded p-1"
+            className="rounded text-sm text-[#B0A6A6] p-1"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
             {"<"}
           </button>
+          <button className="bg-[#377DFF] text-white w-10 h-10 rounded-md">{table.getState().pagination.pageIndex + 1}</button>
           <button
-            className="rounded  p-1"
+            className="rounded text-sm text-[#B0A6A6] p-1"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
             {">"}
           </button>
           <button
-            className="rounded  p-1"
+            className="rounded text-sm text-[#B0A6A6] p-1"
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >

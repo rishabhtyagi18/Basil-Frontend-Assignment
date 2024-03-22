@@ -31,7 +31,7 @@ export const mockOrderTableData: IOrderTableRow[] = Array.from(
     ]),
     customername: getRandomElementFromArray(["Simranjeet Kaur"]),
     contact: getRandomElementFromArray(["9999999999"]),
-    totalamt: getRandomElementFromArray(["₹ 199"]),
+    totalamt: getRandomElementFromArray(["₹ 199", '₹ 99', '₹ 298','₹ 345','₹ 666','₹ 765', '₹ 328','₹ 199', '₹ 199', '₹ 499']),
     status: getRandomElementFromArray([
       "SUCESS",
       "FAILURE",
