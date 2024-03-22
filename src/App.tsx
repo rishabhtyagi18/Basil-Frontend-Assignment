@@ -8,12 +8,16 @@ import UserPage from "./pages/user";
 import RestaurantPage from "./pages/restaurant";
 import BillPage from "./pages/bill";
 import OffersPage from "./pages/offers";
+import OrderDetailsPage from "./pages/order-details";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
-        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/orders">
+          <Route index element={<OrdersPage />} />
+          <Route path=":id" element={<OrderDetailsPage />} />
+        </Route>
         <Route path="" element={<HomePage />} />
         <Route path="/transport" element={<TransportPage />} />
         <Route path="/users" element={<UserPage />} />

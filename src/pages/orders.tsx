@@ -1,15 +1,33 @@
+import FilterDialog from "@/components/filter-dialog/FilterDialog";
 import ExcelExportIcon from "@/components/icons/ExcelExportIcon";
 import SaveAsPDFIcon from "@/components/icons/SaveAsPDFIcon";
+import { DataTable } from "@/components/orders-table/OrderMockDataTable";
+import {
+  IOrderTableRow,
+  orderTableColumns,
+} from "@/components/orders-table/OrderTableColDef";
 import Navbar from "@/components/shared/navbar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { mockOrderTableData } from "@/lib/mockOrderTableData";
+import { SearchIcon } from "lucide-react";
+import { useMemo } from "react";
 
 export default function OrdersPage() {
+  const columns = useMemo(() => orderTableColumns, []);
+  const data: IOrderTableRow[] = mockOrderTableData;
   return (
     <div className="space-y-4 p-6">
       <Navbar title="All Orders" subTitle="All Orders" />
       <div className="flex items-center justify-between">
-        <Input type="text" placeholder="🔍 Search" className="w-60" />
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search"
+            value=""
+            className="focus:outline-buttonprimary w-72 rounded-xl border border-gray-300 px-4 py-3 pl-10"
+          />
+          <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
+        </div>
         <div className="flex items-center space-x-4">
           <div className="rounded-lg border-2 border-[#ADB5BD] p-3 shadow-lg">
             <ExcelExportIcon />
@@ -19,42 +37,53 @@ export default function OrdersPage() {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-between space-x-5">
+      <div className="flex justify-between space-x-5">
         <div className="flex-grow">
-        <div className="rounded-lg bg-white shadow-md">
-          <div className="p-5">
-            <div className="flex items-center text-[#333333] justify-between">
-              <h1>Machines: 6</h1>
-              <h1>Orders: 28</h1>
-              <h1>Customers: 28</h1>
-              <h1>Drinks: 28</h1>
-              <h1>Total Amount: ₹ 25999</h1>
-              <h1>Refunds Initiated: 3</h1>
+          <div className="rounded-lg bg-white shadow-md">
+            <div className="p-5">
+              <div className="flex items-center justify-between text-[#333333]">
+                <h1>Machines: 6</h1>
+                <h1>Orders: 28</h1>
+                <h1>Customers: 28</h1>
+                <h1>Drinks: 28</h1>
+                <h1>Total Amount: ₹ 25999</h1>
+                <h1>Refunds Initiated: 3</h1>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="mt-5 rounded-lg bg-white shadow-md">
-          <div className="p-5">
-            <div className="flex items-center text-[#333333] justify-between">
-              <h1>Table</h1>
-            </div>
-          </div>
-        </div>
-        </div>
-        <div className="lg:-mt-5">
-        <div className="rounded-lg bg-white shadow-md">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="space-y-5">
-                <h1 className="text-lg text-[#5D6679] text-center uppercase font-bold">Filter</h1>
-                <div className="flex items-center space-x-32">
-                  <Button variant="outline" className="text-[#5D6679] border-2 rounded-lg">Select Filters</Button>
-                  <h1 className="text-[#5D6679] underline underline-offset-4">Clear All</h1>
-                </div>
+          <div className="mt-5 rounded-lg bg-white shadow-md">
+            <div className="p-5">
+              <div className="flex items-center justify-between text-[#333333]">
+                <DataTable columns={columns} data={data} />
               </div>
             </div>
           </div>
         </div>
+        <div className="">
+          <div className="rounded-lg bg-white shadow-md">
+            <div className="p-5">
+              <div className="flex items-center">
+                <div className="space-y-5">
+                  <h1 className="text-center text-lg font-bold uppercase text-[#5D6679]">
+                    Filter
+                  </h1>
+                  <div className="flex items-center space-x-32">
+                    <FilterDialog>
+                      <Button
+                        variant="outline"
+                        className="rounded-lg border-2 text-[#5D6679]"
+                      >
+                        Select Filters
+                      </Button>
+                    </FilterDialog>
+                    <h1 className="text-[#5D6679] underline underline-offset-4">
+                      Clear All
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
