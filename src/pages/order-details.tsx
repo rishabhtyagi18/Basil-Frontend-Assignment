@@ -12,6 +12,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import React from "react";
+// import { OrderDetailsMockData } from "@/components/orders-details-table/OrderDetailsMockDataTable";
+// import { IOrderDetailsTableRow, orderDetailsTableColumns } from "@/components/orders-details-table/OrderDetailTableColDef";
+// import { mockOrderDetailsTableData } from "@/lib/mockOrderDetailsTableData";
 
 const drinks = [
   {
@@ -53,10 +56,13 @@ const drinks = [
 ];
 
 interface DrinkItemProps {
-  onRefund: () => void;
+  
 }
 
 const OrderDetailsPage: React.FC<DrinkItemProps> = ({}) => {
+  // const columns = useMemo(() => orderDetailsTableColumns, [])
+  // const data: IOrderDetailsTableRow[] = mockOrderDetailsTableData;
+  
   const getStatusStyle = (status: string) => {
     switch (status) {
       case "SUCCESS":
@@ -178,7 +184,9 @@ const OrderDetailsPage: React.FC<DrinkItemProps> = ({}) => {
                   <div className="text-left text-lg font-bold uppercase text-[#5D6679]">
                     <h1>ORDER DETAILS</h1>
                   </div>
-                  <div className="mt-4 flex grow flex-col overflow-hidden">
+                </div>
+              </div>
+              <div className="mt-4 flex grow flex-col overflow-hidden">
                     <Table className="lg:w-[1300px] ">
                       <TableHeader className="">
                         <TableRow className="border-none">
@@ -245,8 +253,9 @@ const OrderDetailsPage: React.FC<DrinkItemProps> = ({}) => {
                       </TableBody>
                     </Table>
                   </div>
-                </div>
-              </div>
+              {/* <div className="flex">
+                <OrderDetailsMockData columns={columns} data={data} />
+              </div> */}
             </div>
           </div>
         </div>

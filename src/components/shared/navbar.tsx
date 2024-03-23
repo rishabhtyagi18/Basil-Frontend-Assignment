@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, subTitle }) => {
                 type="text"
                 placeholder="Search"
                 value=""
-                className=" focus:outline-buttonprimary rounded-xl border border-gray-300 px-4 py-3 pl-10"
+                className="focus:outline-buttonprimary rounded-xl border border-gray-300 lg:px-4 py-3 pl-10"
               />
               <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
             </div>
