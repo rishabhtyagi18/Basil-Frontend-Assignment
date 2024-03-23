@@ -27,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, subTitle }) => {
             </div>
             <BellDot className="w-12" />
             <Avatar className="h-8 w-8">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarImage src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?size=626&ext=jpg" alt="@shadcn" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </div>

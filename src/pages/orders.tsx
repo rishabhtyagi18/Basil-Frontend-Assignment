@@ -11,10 +11,29 @@ import { Button } from "@/components/ui/button";
 import { mockOrderTableData } from "@/lib/mockOrderTableData";
 import { SearchIcon, X } from "lucide-react";
 import { useMemo } from "react";
+import * as XLSX from 'xlsx';
 
 export default function OrdersPage() {
   const columns = useMemo(() => orderTableColumns, []);
   const data: IOrderTableRow[] = mockOrderTableData;
+  const printAsPDF = () => {
+    // Trigger print dialog
+    window.print();
+
+    // Check if the printing process was initiated
+    if (window.matchMedia('print').matches) {
+        // Convert HTML to PDF and save
+        html2pdf().from(document.body).save();
+      }
+  };
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    const fileName= "exported_data";
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+    XLSX.writeFile(workbook, `${fileName}.xlsx`);
+  };
+
   return (
     <div className="space-y-4 p-6">
       <Navbar title="All Orders" subTitle="All Orders" />
@@ -29,10 +48,10 @@ export default function OrdersPage() {
           <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
         </div>
         <div className="flex items-center space-x-4">
-          <div className="rounded-lg border-2 border-[#ADB5BD] p-3 shadow-lg">
+          <div className="rounded-lg border-2 border-[#ADB5BD] p-3 shadow-lg" onClick={exportToExcel}>
             <ExcelExportIcon />
           </div>
-          <div className="rounded-lg border-2 border-[#ADB5BD] p-3 shadow-lg">
+          <div className="rounded-lg border-2 border-[#ADB5BD] p-3 shadow-lg" onClick={printAsPDF}>
             <SaveAsPDFIcon />
           </div>
         </div>

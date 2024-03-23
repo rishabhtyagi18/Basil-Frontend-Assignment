@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
 import {
   Dialog,
   DialogContent,
@@ -16,17 +16,25 @@ import SentIcon from "@/assets/sent.png";
 import FailureIcon from "@/assets/stop.png";
 import RefundInitiatedIcon from "@/assets/refundinitiated.png";
 import RefundCompletedIcon from "@/assets/refund.png";
+import {
+  IFilterTableRow,
+  filterTableColumns,
+} from "@/components/filter-dialog/FilterTableColDef";
+import { mockFilterTableData } from "@/lib/mockFilterTableData";
+import { DataTable } from "@/components/orders-table/OrderMockDataTable";
 interface IProps {
   children: ReactNode;
 }
 
 export default function FilterDialog(props: IProps) {
   const { children } = props;
+  const columns = useMemo(() => filterTableColumns, []);
+  const data: IFilterTableRow[] = mockFilterTableData;
 
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-w-screen-md pb-16 pl-16 pr-16 pt-12">
+      <DialogContent className="max-w-screen-md pb-16 pl-16 pr-16 pt-12" style={{ height: "90%", overflow: "scroll" }}>
         <form className="space-y-10">
           <DialogHeader className="flex items-center">
             <DialogTitle className="font-semibold uppercase">
@@ -45,7 +53,25 @@ export default function FilterDialog(props: IProps) {
             </div>
             <div className="rounded-lg border-2 bg-white shadow-md">
               <div className="p-5">
-                <h1>Machine</h1>
+                <h1>Machines</h1>
+                <br></br>
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    value=""
+                    className="focus:outline-buttonprimary w-full rounded-xl border border-gray-300 px-4 py-3 pl-10"
+                  />
+                  <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
+
+                  <div className="mt-8 rounded-lg bg-white shadow-md">
+                    <div className="p-0">
+                      <div className="flex items-center justify-between text-[#333333]">
+                        <DataTable columns={columns} data={data} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="space-y-3">
@@ -92,9 +118,6 @@ export default function FilterDialog(props: IProps) {
                   </div>
                 </Button>
               </div>
-            </div>
-            <div>
-              <h1>Date Range</h1>
             </div>
           </div>
           <Separator className="my-4" />

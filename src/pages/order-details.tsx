@@ -12,6 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import React from "react";
+import * as XLSX from 'xlsx';
 // import { OrderDetailsMockData } from "@/components/orders-details-table/OrderDetailsMockDataTable";
 // import { IOrderDetailsTableRow, orderDetailsTableColumns } from "@/components/orders-details-table/OrderDetailTableColDef";
 // import { mockOrderDetailsTableData } from "@/lib/mockOrderDetailsTableData";
@@ -80,6 +81,26 @@ const OrderDetailsPage: React.FC<DrinkItemProps> = ({}) => {
     // Handle refund logic for the drink at the given index
     console.log(`Refund initiated for drink at index ${index}`);
   };
+
+  const printAsPDF = () => {
+    // Trigger print dialog
+    window.print();
+
+    // Check if the printing process was initiated
+    if (window.matchMedia('print').matches) {
+        // Convert HTML to PDF and save
+        html2pdf().from(document.body).save();
+      }
+  };
+
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(drinks);
+    const workbook = XLSX.utils.book_new();
+    const fileName= "exported_data";
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+    XLSX.writeFile(workbook, `${fileName}.xlsx`);
+  };
+
   return (
     <div className="space-y-5 p-6">
       <Navbar title="OD101" subTitle="All Orders / OD101" />
@@ -92,10 +113,10 @@ const OrderDetailsPage: React.FC<DrinkItemProps> = ({}) => {
               <p>Refund Complete Order</p>
             </Button>
           </div>
-          <div className="rounded-lg border-2 border-[#ADB5BD] p-3 shadow-lg">
+          <div className="rounded-lg border-2 border-[#ADB5BD] p-3 shadow-lg" onClick={exportToExcel}>
             <ExcelExportIcon />
           </div>
-          <div className="rounded-lg border-2 border-[#ADB5BD] p-3 shadow-lg">
+          <div className="rounded-lg border-2 border-[#ADB5BD] p-3 shadow-lg" onClick={printAsPDF}>
             <SaveAsPDFIcon />
           </div>
         </div>
@@ -176,7 +197,7 @@ const OrderDetailsPage: React.FC<DrinkItemProps> = ({}) => {
             </div>
           </div>
         </div>
-        <div className="flex-grow">
+        <div className="flex-grow" style={{ overflow: "scroll" }}>
           <div className="rounded-lg bg-white shadow-md">
             <div className="p-5">
               <div className="flex items-center">
@@ -239,7 +260,7 @@ const OrderDetailsPage: React.FC<DrinkItemProps> = ({}) => {
                               <Button
                                 className={`justify-center rounded-lg px-5 py-px lg:text-lg ${
                                   drink.status !== "SUCCESS"
-                                    ? "bg-zinc-400"
+                                    ? "bg-zinc-500"
                                     : "bg-blue-500"
                                 }`}
                                 disabled={drink.status !== "SUCCESS"}
