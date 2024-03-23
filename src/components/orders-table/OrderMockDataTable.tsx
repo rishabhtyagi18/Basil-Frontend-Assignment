@@ -37,7 +37,10 @@ export function DataTable<TData, TValue>({
       <Table className="h-full">
         <TableHeader className="">
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="cursor-pointer border-none">
+            <TableRow
+              key={headerGroup.id}
+              className="cursor-pointer border-none"
+            >
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id} className="h-16 py-2 text-left">

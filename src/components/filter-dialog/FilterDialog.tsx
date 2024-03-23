@@ -7,9 +7,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { SearchIcon } from "lucide-react";
-
+import SuccessIcon from "@/assets/success.png";
+import PendingIcon from "@/assets/pending.png";
+import SentIcon from "@/assets/sent.png";
+import FailureIcon from "@/assets/stop.png";
+import RefundInitiatedIcon from "@/assets/refundinitiated.png";
+import RefundCompletedIcon from "@/assets/refund.png";
 interface IProps {
   children: ReactNode;
 }
@@ -37,18 +43,63 @@ export default function FilterDialog(props: IProps) {
               />
               <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
             </div>
-            <div>
-              <h1>Machine</h1>
+            <div className="rounded-lg border-2 bg-white shadow-md">
+              <div className="p-5">
+                <h1>Machine</h1>
+              </div>
             </div>
-            <div>
+            <div className="space-y-3">
               <h1>Status</h1>
+              <div className="grid grid-cols-5 gap-x-12 gap-y-4">
+                <Button className="h-32 w-32 rounded-lg border-2 border-black bg-white hover:bg-white">
+                  <div className="space-y-2 text-left text-black">
+                    <img src={SuccessIcon} />
+                    <h1>Successful</h1>
+                  </div>
+                </Button>
+                <Button className="h-32 w-32 rounded-lg border-2 bg-white hover:bg-white">
+                  <div className="space-y-2 text-left text-black">
+                    <img src={PendingIcon} />
+                    <h1>Pending</h1>
+                  </div>
+                </Button>
+                <Button className="h-32 w-32 rounded-lg border-2 bg-white hover:bg-white">
+                  <div className="space-y-2 text-left text-black">
+                    <img src={SentIcon} />
+                    <h1>Sent</h1>
+                  </div>
+                </Button>
+                <Button className="h-32 w-32 rounded-lg border-2 bg-white hover:bg-white">
+                  <div className="space-y-2 text-left text-black">
+                    <img src={FailureIcon} />
+                    <h1>Failure</h1>
+                  </div>
+                </Button>
+                <Button className="h-32 w-32 rounded-lg border-2 bg-white hover:bg-white">
+                  <div className="space-y-2 text-left text-black">
+                    <img src={RefundInitiatedIcon} />
+                    <h1>
+                      Refund <br /> Initiated
+                    </h1>
+                  </div>
+                </Button>
+                <Button className="h-32 w-32 rounded-lg border-2 bg-white hover:bg-white">
+                  <div className="space-y-2 text-left text-black">
+                    <img src={RefundCompletedIcon} />
+                    <h1 className="">
+                      Refund <br /> Completed
+                    </h1>
+                  </div>
+                </Button>
+              </div>
             </div>
             <div>
               <h1>Date Range</h1>
             </div>
           </div>
-          <DialogFooter className="">
-            <Button>Clear All</Button>
+          <Separator className="my-4" />
+          <DialogFooter className="flex items-center justify-between">
+            <Button className="">Clear All</Button>
             <Button>Apply</Button>
           </DialogFooter>
         </form>

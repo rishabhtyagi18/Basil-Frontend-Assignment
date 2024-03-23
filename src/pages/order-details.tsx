@@ -94,7 +94,7 @@ const OrderDetailsPage: React.FC<DrinkItemProps> = ({}) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row justify-between space-y-5 lg:space-x-5 lg:space-y-0">
+      <div className="flex flex-col justify-between space-y-5 lg:flex-row lg:space-x-5 lg:space-y-0">
         <div className="flex-shrink">
           <div className="rounded-lg bg-white shadow-md">
             <div className="p-5">
@@ -182,22 +182,22 @@ const OrderDetailsPage: React.FC<DrinkItemProps> = ({}) => {
                     <Table className="lg:w-[1300px] ">
                       <TableHeader className="">
                         <TableRow className="border-none">
-                          <TableHead className="text-xs lg:text-md font-bold leading-6 tracking-wider text-blue-500">
+                          <TableHead className="lg:text-md text-xs font-bold leading-6 tracking-wider text-blue-500">
                             ID
                           </TableHead>
-                          <TableHead className="text-xs lg:text-md font-bold leading-6 tracking-wider text-blue-500">
+                          <TableHead className="lg:text-md text-xs font-bold leading-6 tracking-wider text-blue-500">
                             DRINK NAME
                           </TableHead>
-                          <TableHead className="text-xs lg:text-md font-bold leading-6 tracking-wider text-blue-500">
+                          <TableHead className="lg:text-md text-xs font-bold leading-6 tracking-wider text-blue-500">
                             CUSTOMISATION
                           </TableHead>
-                          <TableHead className="text-xs lg:text-md font-bold leading-6 tracking-wider text-blue-500">
+                          <TableHead className="lg:text-md text-xs font-bold leading-6 tracking-wider text-blue-500">
                             AMOUNT
                           </TableHead>
-                          <TableHead className="text-xs lg:text-md font-bold leading-6 tracking-wider text-blue-500">
+                          <TableHead className="lg:text-md text-xs font-bold leading-6 tracking-wider text-blue-500">
                             DRINK STATUS
                           </TableHead>
-                          <TableHead className="text-xs lg:text-md font-bold leading-6 tracking-wider text-blue-500">
+                          <TableHead className="lg:text-md text-xs font-bold leading-6 tracking-wider text-blue-500">
                             ACTION
                           </TableHead>
                         </TableRow>
@@ -222,14 +222,14 @@ const OrderDetailsPage: React.FC<DrinkItemProps> = ({}) => {
                             </TableCell>
                             <TableCell>
                               <p
-                                className={`flex items-center text-md font-normal leading-5 ${getStatusStyle(drink.status)}`}
+                                className={`text-md flex items-center font-normal leading-5 ${getStatusStyle(drink.status)}`}
                               >
                                 {drink.status}
                               </p>
                             </TableCell>
                             <TableCell className="">
                               <Button
-                                className={`justify-center lg:text-lg rounded-lg px-5 py-px ${
+                                className={`justify-center rounded-lg px-5 py-px lg:text-lg ${
                                   drink.status !== "SUCCESS"
                                     ? "bg-zinc-400"
                                     : "bg-blue-500"
