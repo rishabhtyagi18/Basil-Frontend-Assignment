@@ -3,7 +3,7 @@ import { getRandomElementFromArray } from "./utils";
 
 export const mockOrderTableData: IOrderTableRow[] = Array.from(
   {
-    length: 20,
+    length: 100,
   },
   (_, index) => ({
     sno: index.toString(),
