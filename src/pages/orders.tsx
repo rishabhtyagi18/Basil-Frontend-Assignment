@@ -37,11 +37,11 @@ export default function OrdersPage() {
           </div>
         </div>
       </div>
-      <div className="flex justify-between space-x-5">
+      <div className="flex flex-col lg:flex-row justify-between gap-y-5 lg:gap-x-5">
         <div className="flex-grow">
           <div className="rounded-lg bg-white shadow-md">
-            <div className="p-5">
-              <div className="flex items-center justify-between text-[#333333]">
+            <div className="px-2 py-5 lg:p-5">
+              <div className="grid grid-cols-3 gap-y-2 lg:grid-cols-6 text-sm lg:text-lg items-center justify-between text-[#333333]">
                 <h1>Machines: 6</h1>
                 <h1>Orders: 28</h1>
                 <h1>Customers: 28</h1>
@@ -67,7 +67,7 @@ export default function OrdersPage() {
                   <h1 className="text-center text-lg font-bold uppercase text-[#5D6679]">
                     Filter
                   </h1>
-                  <div className="flex items-center space-x-32">
+                  <div className="flex items-center space-x-64 lg:space-x-32">
                     <FilterDialog>
                       <Button
                         variant="outline"
